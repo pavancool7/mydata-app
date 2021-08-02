@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Build docker image'){
             steps{
-                sh "docker build -t pavancool7/mydata-app:${version}"
+                sh "docker build . -t pavancool7/mydata-app:${version}"
             }
         }
         stage('Push docker file to Docker Hub'){
