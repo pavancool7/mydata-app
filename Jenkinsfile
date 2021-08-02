@@ -14,9 +14,8 @@ pipeline{
                 withCredentials([string(credentialsId: 'docker-hub-pass', variable: 'docker-pass')]) {
                 sh "docker login -u pavancool7 -p ${docker-pass}"
                 sh "docker push pavancool7/mydata-app:${version}"
-            }   
-        }
-
+                }   
+            }
         }
     }
 }
