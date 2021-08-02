@@ -11,8 +11,8 @@ pipeline{
         }
         stage('Push docker file to Docker Hub'){
             steps{
-                withCredentials([string(credentialsId: 'docker-hub-pass', variable: 'docker-pass')]) {
-                sh "docker login -u pavancool7 -p ${docker-pass}"
+                withCredentials([string(credentialsId: 'docker-hub-pass', variable: 'dockerpass')]) {
+                sh "docker login -u pavancool7 -p ${dockerpass}"
                 sh "docker push pavancool7/mydata-app:${version}"
                 }   
             }
