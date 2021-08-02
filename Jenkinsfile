@@ -6,13 +6,15 @@ pipeline{
     stages{
         stage('Build docker image'){
             steps{
-                sh "docker build . -t pavancool7/mydata-app:${version}"
+                sh "docker build -t pavancool7/mydata-app:${version}"
             }
         }
         stage('Push docker file to Docker Hub'){
-            withCredentials([string(credentialsId: 'docker-hub-pass', variable: 'docker-pass')]) {
-             sh "docker login -u pavancool7 -p ${docker-pass}"
-             sh "docker push pavancool7/mydata-app:${version}"
+            steps{
+                withCredentials([string(credentialsId: 'docker-hub-pass', variable: 'docker-pass')]) {
+                sh "docker login -u pavancool7 -p ${docker-pass}"
+                sh "docker push pavancool7/mydata-app:${version}"
+            }   
         }
 
         }
