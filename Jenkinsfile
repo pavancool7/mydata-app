@@ -17,28 +17,23 @@ pipeline{
                 }   
             }
         }
-        stage('change version'){
+        stage('kubernetes Deployment'){
             steps{
                 sh "chmod +x verchange.sh"
                 sh "./verchange.sh ${version}"
                 sh "cat myapp1.yml"
-                //script{
-                  //  configs:'myapp1.yml',
-                   // kubeconfigid:"my-k8s-config"
-                   // enableConfigSubstitution: true
-               // }
+            //    script{
+            //        configs:'myapp1.yml',
+            //        kubeconfigid:"my-k8s-config"
+            //        enableConfigSubstitution: true
+            //    }
+                 
             }
-        stage('kubernetes Deployment'){
-            steps{
-                withCredentials([sshUserPrivateKey(credentialsId: 'myssh', keyFileVariable: 'mysshkey')]) {
-                sh "scp myapp1.yml -u ec2-user -p mysshkey 18.116.80.211:/home/ece-user"
-                } 
-            }
-        }   
+        }
     }
-}
 }
 def getDockerTag(){
     def tag = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
     }
+
