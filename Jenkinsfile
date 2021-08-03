@@ -22,7 +22,7 @@ pipeline{
                 sh "chmod +x verchange.sh"
                 sh "./verchange.sh ${version}"
                 sh "cat myapp1.yml"
-                sh "scp myapp.yml ec2-user@ip-172-31-7-100"
+                sh "scp myapp.yml ec2-user@18.116.80.211"
             //    script{
             //        configs:'myapp1.yml',
             //        kubeconfigid:"my-k8s-config"
