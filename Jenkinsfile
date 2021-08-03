@@ -17,7 +17,7 @@ pipeline{
                 }   
             }
         }
-        stage('kubernetes Deployment'){
+        stage('change version'){
             steps{
                 sh "chmod +x verchange.sh"
                 sh "./verchange.sh ${version}"
@@ -27,18 +27,17 @@ pipeline{
                    // kubeconfigid:"my-k8s-config"
                    // enableConfigSubstitution: true
                // }
-                stage('kubernetes Deployment'){
-                    steps{
-                        withCredentials([sshUserPrivateKey(credentialsId: 'myssh', keyFileVariable: 'mysshkey')]) {
-                            sh "scp myapp1.yml -u ec2-user -p mysshkey 18.116.80.211:/home/ece-user"
-                        } 
-                    }
             }
-        }
+        stage('kubernetes Deployment'){
+            steps{
+                withCredentials([sshUserPrivateKey(credentialsId: 'myssh', keyFileVariable: 'mysshkey')]) {
+                sh "scp myapp1.yml -u ec2-user -p mysshkey 18.116.80.211:/home/ece-user"
+                } 
+            }
+        }   
     }
 }
 def getDockerTag(){
     def tag = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
     }
-
