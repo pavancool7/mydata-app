@@ -32,10 +32,10 @@ pipeline{
         }
         stage("kubernetes deployment"){
             steps{
-               withCredentials([sshUserPrivateKey(credentialsId: 'myssh2', keyFileVariable: 'mysshkey')]) {
+               //withCredentials([sshUserPrivateKey(credentialsId: 'myssh2', keyFileVariable: 'mysshkey')]) {
                 //sh "chmod 777 /home/ec2-user/pavan1.pem"
-                   sh "scp -i ${mysshkey} myapp1.yml ec2-user@18.116.80.211:/home/ec2-user" 
-                } 
+                   sh "scp -o StrictHostKeyChecking=no myapp1.yml ec2-user@18.116.80.211:/home/ec2-user" 
+               // } 
             }
         }
     }
