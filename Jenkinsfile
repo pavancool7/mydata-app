@@ -25,8 +25,8 @@ pipeline{
                 sh "scp myapp.yml ec2-user@18.116.80.211"
                 script{
                     try{
-                        sh "ssh ec2-user@18.116.80.211 kubectl apply -f myapp.yml"
-                    }catch(error){sh "ssh ec2-user@18.116.80.211 kubectl create -f myapp.yml"}               
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@18.116.80.211 kubectl apply -f myapp.yml"
+                    }catch(error){sh "ssh -o StrictHostKeyChecking=no ec2-user@18.116.80.211 kubectl create -f myapp.yml"}               
                 }
             //    script{
             //        configs:'myapp1.yml',
