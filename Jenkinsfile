@@ -36,11 +36,11 @@ pipeline{
                 //sh "chmod 777 /home/ec2-user/pavan1.pem"
                 sh "scp -i mysshkey myapp1.yml ec2-user@18.116.80.211:/home/ec2-user" 
                 //script{
-                 //   try{
-                  //      sh "ssh -i mysshkey ec2-user@18.116.80.211 kubectl apply -f myapp1.yml"
-                 //   }catch(error){
-                  //      sh "ssh -i mysshkey ec2-user@18.116.80.211 kubectl apply -f myapp1.yml"
-                   // }
+                //    try{
+                //        sh "ssh -i mysshkey ec2-user@18.116.80.211 kubectl apply -f myapp1.yml"
+                //    }catch(error){
+                //        sh "ssh -i mysshkey ec2-user@18.116.80.211 kubectl apply -f myapp1.yml"
+                //    }
                 }
                 } 
             }
