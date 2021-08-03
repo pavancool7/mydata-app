@@ -34,7 +34,8 @@ pipeline{
             steps{
                 withCredentials([sshUserPrivateKey(credentialsId: 'myssh', keyFileVariable: 'mysshkey')]) {
                 //sh "chmod 777 /home/ec2-user/pavan1.pem"
-                sh "scp -i mysshkey myapp1.yml ec2-user@18.116.80.211"              
+                sh "scp -i mysshkey myapp1.yml ec2-user@18.116.80.211:/home/ec2-user" 
+                sh "ssh -i mysshkey ec2-user@18.116.80.211:/home/ec2-user"
                 } 
             }
         }
