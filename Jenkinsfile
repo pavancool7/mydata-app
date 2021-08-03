@@ -21,9 +21,10 @@ pipeline{
             steps{
                 sh "chmod +x verchange.sh"
                 sh "./verchange.sh ${version}"
-                configs:'mydata-app/myapp.yml',
-                kubeconfigid:"my-k8s-config"
-                enableConfigSubstitution: true
+                sh "cat myapp1.yml"
+                // configs:'mydata-app/myapp.yml',
+                //kubeconfigid:"my-k8s-config"
+                //enableConfigSubstitution: true
             }
         }
     }
