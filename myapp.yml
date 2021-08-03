@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydata
+  labels:
+    app: mydata
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mydata
+  template:
+    metadata:
+      name: mydata
+      labels:
+        app: mydata
+    spec:
+      containers:
+      - name: myapp
+        image: pavancool7/mydata-app:tagversion
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_URL
+          valueFrom:
+            configMapKeyRef:
+              name: myconfig
+              key: mongourl
+          
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: mydata-service
+spec:
+  selector:
+    app: mydata
+  type: LoadBalancer
+  ports:
+  - name: logindata
+    protocol: TCP
+    port: 3030
+    targetPort: 3000
+    nodePort: 30002
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: myconfig
+data:
+  mongourl: mongodb+srv://pavancool:pavancool@7@cluster0.o0dgh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
+  
