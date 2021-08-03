@@ -21,9 +21,7 @@ pipeline{
             steps{
                 sh "chmod +x verchange.sh"
                 sh "./verchange.sh ${version}"
-                sh "cat myapp1.yml"
-                sh "cp myapp1 pods.yml"
-                sh "cat pods.yml"
+                sh "cat myapp1.yml > /home/ec2-user/myapp2.yml"
             //    script{
             //        configs:'myapp1.yml',
             //        kubeconfigid:"my-k8s-config"
