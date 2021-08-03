@@ -33,7 +33,7 @@ pipeline{
         stage("kubernetes deployment"){
             steps{
                 withCredentials([sshUserPrivateKey(credentialsId: 'myssh', keyFileVariable: 'mysshkey')]) {
-                sh "ssh -i pavan1.pem ec2-user@18.116.80.211"
+                sh "ssh -i /home/ec2-user/pavan1.pem ec2-user@18.116.80.211"
                 sh "kubectl get nodes"
                 } 
             }
