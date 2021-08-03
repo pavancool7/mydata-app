@@ -38,16 +38,17 @@ pipeline{
             }
         }
         stage("kubernetes deployment"){
-        //    steps{
+           steps{
         //       //withCredentials([sshUserPrivateKey(credentialsId: 'myssh2', keyFileVariable: 'mysshkey')]) {
         //        //sh "chmod 777 /home/ec2-user/pavan1.pem"
         //           sh "scp myapp.yml ec2-user@ip-172-31-7-100" 
         //       // } 
-        //    }
-                kubernetesDeploy(
+                            kubernetesDeploy(
                 configs: 'myapp1.yml',
                 kubeconfigId: 'K8S',
                 enableConfigSubstitution: true)
+           }
+
         }
     }
 }
