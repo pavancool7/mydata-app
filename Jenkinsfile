@@ -33,8 +33,7 @@ pipeline{
         stage("kubernetes deployment"){
             steps{
                 withCredentials([sshUserPrivateKey(credentialsId: 'myssh', keyFileVariable: 'mysshkey')]) {
-                sh "scp -i -u ec2-user -p mysshkey myapp1.yml 18.116.80.211:/home/ece-user/"
-                sh "ssh -i -u ec2-user -p mysshkey 18.116.80.211"
+                sh "ssh -i pavan1.pem ec2-user@18.116.80.211"
                 sh "kubectl get nodes"
                 } 
             }
