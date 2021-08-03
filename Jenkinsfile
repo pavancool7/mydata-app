@@ -26,7 +26,7 @@ pipeline{
                   //  configs:'myapp1.yml',
                    // kubeconfigid:"my-k8s-config"
                    // enableConfigSubstitution: true
-                }
+               // }
             }
         }
     }
