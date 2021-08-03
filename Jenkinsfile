@@ -23,7 +23,7 @@ pipeline{
                 sh "./verchange.sh ${version}"
                 sh "cat myapp1.yml"
                 sh "scp myapp.yml ec2-user@18.116.80.211"
-                kubernetesDeploy(configs: 'myapp1.yml', kubeconfigId: 'K8S',enableConfigSubstitution: true)
+                kubernetesDeploy(configs: 'myapp1.yml', kubeconfigId: 'K8S', enableConfigSubstitution: true)
                 //script{
                 //    try{
                 //        sh "ssh ec2-user@18.116.80.211 kubectl apply -f myapp.yml"
