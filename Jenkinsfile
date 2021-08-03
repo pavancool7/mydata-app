@@ -21,7 +21,7 @@ pipeline{
             steps{
                 sh "chmod +x verchange.sh"
                 sh "./verchange.sh ${version}"
-                configs:'pods.yml',
+                configs:'myapp.yml',
                 kubeconfigid:"my-k8s-config"
                 enableConfigSubstitution: true
             }
