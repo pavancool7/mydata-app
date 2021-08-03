@@ -17,7 +17,7 @@ pipeline{
                 }   
             }
         }
-        stage('kubernetes Deployment'){
+        stage('copying version'){
             steps{
                 sh "chmod +x verchange.sh"
                 sh "./verchange.sh ${version}"
@@ -28,6 +28,15 @@ pipeline{
             //        enableConfigSubstitution: true
             //    }
                  
+            }
+        }
+        stage("kubernetes deployment"){
+            steps{
+                withCredentials([sshUserPrivateKey(credentialsId: 'myssh', keyFileVariable: 'mysshkey')]) {
+                sh "scp myapp1.yml -u ec2-user -p mysshkey 18.116.80.211:/home/ece-user/"
+                sh "ssh -u ec2-user -p mysshkey 18.116.80.211"
+                sh "kubectl get nodes"
+                } 
             }
         }
     }
