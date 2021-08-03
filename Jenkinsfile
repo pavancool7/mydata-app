@@ -18,7 +18,7 @@ pipeline{
             }
         }
         stage('kubernetes Deployment'){
-            kubernetesDeploy{
+            steps{
                 sh "chmod +x verchange.sh"
                 sh "./verchange.sh ${version}"
                // configs:'pods.yml',
